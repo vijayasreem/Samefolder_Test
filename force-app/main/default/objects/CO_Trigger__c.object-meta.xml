@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Survey_Question__c</fullName>
+        <externalId>true</externalId>
+        <label>Survey Question</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <label>Type</label>
+        <required>true</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Question_Choice__c</fullName>
+        <externalId>true</externalId>
+        <label>Survey Question Choice</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Choice__c</fullName>
+        <label>Choice</label>
+        <required>true</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Response__c</fullName>
+        <externalId>true</externalId>
+        <label>Survey Response</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Answer__c</fullName>
+        <label>Answer</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Answer_Text__c</fullName>
+        <label>Answer Text</label>
+        <required>true</required>
+        <type>TextArea</type>
+    </fields>
+</CustomObject>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Trigger xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>45.0</apiVersion>
+    <isActive>true</isActive>
+    <description>Survey Feedback Lightning Web Component trigger</description>
+    <triggerName>SurveyResponseTrigger</triggerName>
+    <type>before insert</type>
+    <object>Survey_Response__c</object>
+    <Body>Map&lt;Id, Survey_Question__c&gt; surveyQuestions = new Map&lt;Id, Survey_Question__c&gt;([SELECT Id, Type__c FROM Survey_Question__c]);
+    Map&lt;Id, Survey_Question_Choice__c&gt; surveyQuestionChoices = new Map&lt;Id, Survey_Question_Choice__c&gt;([SELECT Id, Choice__c FROM Survey_Question_Choice__c]);
+
+    for (Survey_Response__c surveyResponse : Trigger.new) {
+        if (surveyQuestions.containsKey(surveyResponse.Survey_Question__c)) {
+            Survey_Question__c surveyQuestion = surveyQuestions.get(surveyResponse.Survey_Question__c);
+            if (surveyQuestion.Type__c == 'Text') {
+                surveyResponse.Answer__c = surveyResponse.Answer_Text__c;
+            } else if (surveyQuestion.Type__c == 'Single Choice' || surveyQuestion.Type__c == 'Multi Choice') {
+                if (surveyQuestionChoices.containsKey(surveyResponse.Answer__c)) {
+                    surveyResponse.Answer__c = surveyQuestionChoices.get(surveyResponse.Answer__c).Choice__c;
+                }
+            }
+        }
+    }</Body>
+</Trigger>
